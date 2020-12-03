@@ -11,7 +11,7 @@ import json
 import os
 from pathlib import Path
 
-
+print(os.getcwd())
 # Input
 train_file = 'train.json'
 validation_file = 'validation.json'
@@ -28,23 +28,23 @@ test_videofolder = 'test_videofolder.txt'
 
 if __name__ == '__main__':
     dataset_name = 'something-something-v2'  # 'jester-v1'
-    with open(label_file)) as f:
+    with open(label_file) as f:
         data = json.load(f)
     categories = []
     for i, (cat, idx) in enumerate(data.items()):
-        assert i == int(idx)  # make sure the rank is right
+        assert i+1 == int(idx)  # make sure the rank is right
         categories.append(cat)
 
     with open('category.txt', 'w') as f:
         f.write('\n'.join(categories))
 
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     dict_categories = {}
     for i, category in enumerate(categories):
         dict_categories[category] = i
 
-    files_input = [validation_file, train_file, test_file]
-    files_output = [val_videofolder, train_videofolder, test_videofolder]
+    files_input = [validation_file, train_file]
+    files_output = [val_videofolder, train_videofolder]
     for (filename_input, filename_output) in zip(files_input, files_output):
         with open(filename_input) as f:
             data = json.load(f)
@@ -62,7 +62,7 @@ if __name__ == '__main__':
             curIDX = idx_categories[i]
             # counting the number of frames in each video folders
             dir_files = os.listdir(os.path.join(frames, curFolder))
-            output.append('%s %d %d' % (curFolder, len(dir_files), curIDX))
+            output.append('%s %d %d' % (os.path.join(frames, curFolder), len(dir_files), curIDX))
             print('%d/%d' % (i, len(folders)))
         with open(filename_output, 'w') as f:
             f.write('\n'.join(output))

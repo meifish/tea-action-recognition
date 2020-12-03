@@ -24,24 +24,28 @@ def return_hmdb51(modality):
     return filename_categories, filename_imglist_train, filename_imglist_val, prefix
 
 def return_something(modality):
+    # filename_categories = 174
     filename_categories = 174
     if modality == 'RGB':
-        filename_imglist_train = '/data1/phoenixyli/DeepLearning/' \
-                'something-something-v1/TrainTestlist/train_videofolder_new.txt'
-        filename_imglist_val = '/data1/phoenixyli/DeepLearning/' \
-                'something-something-v1/TrainTestlist/val_videofolder_new.txt'
-        prefix = '{:05d}.jpg'
+        filename_imglist_train = '/media/meiyu/0C9255199255091A/code/tea-action-recognition/tools/' \
+                'toy_dataset/video_list/train_videofolder.txt'
+        filename_imglist_val = '/media/meiyu/0C9255199255091A/code/tea-action-recognition/tools/' \
+                'toy_dataset/video_list/validation_videofolder.txt'
+        prefix = '{:04d}.jpg'
     else:
         print('no such modality:'+modality)
         raise NotImplementedError
     return filename_categories, filename_imglist_train, filename_imglist_val, prefix
 
 def return_somethingv2(modality):
+    # filename_categories = 174
     filename_categories = 174
     if modality == 'RGB':
-        filename_imglist_train = '/data2/v_jasonbji/ft_local/Something-Something-V2/train_videofolder.txt'
-        filename_imglist_val = '/data2/v_jasonbji/ft_local/Something-Something-V2/test_videofolder.txt'
-        prefix = '{:06d}.jpg'
+        filename_imglist_train = '/media/meiyu/0C9255199255091A/code/tea-action-recognition/tools/' \
+                'toy_dataset/video_list/train_videofolder.txt'
+        filename_imglist_val = '/media/meiyu/0C9255199255091A/code/tea-action-recognition/tools/' \
+                'toy_dataset/video_list/val_videofolder.txt'
+        prefix = '{:04d}.jpg'
     else:
         raise NotImplementedError('no such modality:'+modality)
     return filename_categories, filename_imglist_train, filename_imglist_val, prefix

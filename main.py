@@ -7,6 +7,7 @@ import shutil
 import torch.nn.parallel
 import torch.backends.cudnn as cudnn
 import torch.optim
+import torch
 from torch.nn.utils import clip_grad_norm_
 
 from ops.dataset import TSNDataSet
@@ -21,6 +22,7 @@ best_prec1 = 0
 
 
 def main():
+    torch.cuda.empty_cache() 
     global args, best_prec1
     args = parser.parse_args()
 
@@ -64,7 +66,7 @@ def main():
     policies = model.get_optim_policies()
     train_augmentation = model.get_augmentation(flip=False if 'something' in args.dataset else True)
 
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     model = torch.nn.DataParallel(model, device_ids=args.gpus).cuda()
     
     # Add specific initialized lr and weight_decay for each group
@@ -184,7 +186,7 @@ def main():
         print(('group: {} has {} params, lr_mult: {}, decay_mult: {}'.format(
             group['name'], len(group['params']), group['lr_mult'], group['decay_mult'])))
 
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     if args.evaluate:
         validate(val_loader, model, criterion, 0)
         return

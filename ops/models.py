@@ -62,6 +62,7 @@ class TSN(nn.Module):
             self.base_model = self._construct_diff_model(self.base_model)
             print("Done. RGBDiff model ready.")
 
+        # Here is module initiative
         self.consensus = ConsensusModule(consensus_type)
 
         if not self.before_softmax:
@@ -279,7 +280,9 @@ class TSN(nn.Module):
 
         if self.reshape:
             base_out = base_out.view((-1, self.num_segments) + base_out.size()[1:])
+            # meiyu: here is forward
             output = self.consensus(base_out)
+
             return output.squeeze(1)
 
     def _get_diff(self, input, keep_rgb=False):
