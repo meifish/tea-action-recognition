@@ -1,7 +1,7 @@
-.pyc
-.vscode
-.log/
-.checkpoint/
-.ipynb_checkpoints/
+*.pyc
+*.vscode
+log/
+checkpoint/
+*ipynb_checkpoints/
 *.jpg
 *.webm
